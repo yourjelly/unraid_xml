@@ -3,16 +3,16 @@
   <Name>sd-webUI</Name>
   <Repository>hlky/sd-webui:runpod</Repository>
   <Registry>https://hub.docker.com/r/hlky/sd-webui</Registry>
-  <Network>proxynet</Network>
+  <Network>Bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://CREATE_THREAD_IN_FORUM</Support>
   <Project>https://github.com/sd-webui/stable-diffusion-webui</Project>
-  <Overview>**WARNING LARGE MODELS DOWNLOADED ON CONTAINER CREATION** (>31GB download)&#xD;
-This driver needs to support the version of CUDA in use by this container. The template adds --gpus all to the way the docker container is started to get access to the GPU(s).&#xD;
-If you have multiple GPUs in your system with some allocated to VMs, make sure to replace --gpus all with --runtime=nvidia and follow the steps below to set the NVIDIA_DRIVER_CAPABILITIES and NVIDIA_VISIBLE_DEVICES variables to only give the container access to selected GPUs.&#xD;
-https://forums.unraid.net/topic/98978-plugin-nvidia-driver/#comment-913251&#xD;
+  <Overview>Please note that the container images is large at over 4GB &#xD;
+To use it requires the Nvidia driver installation on your Unraid server for support of Docker. &#xD;
+This installation needs to support the version of CUDA installed to use with this container.&#xD;
+If you have multiple GPUs in your system with some allocated to VMs, make sure to replace --gpus all with --runtime=nvidia and set the NVIDIA_DRIVER_CAPABILITIES and NVIDIA_VISIBLE_DEVICES variables to only give the container access to selected GPUs.&#xD;
 &#xD;
 Streamlit ui for Stable Diffusion&#xD;
 https://github.com/sd-webui/stable-diffusion-webui/&#xD;
@@ -31,20 +31,21 @@ RealESRGAN: RealESRGAN_x4plus and RealESRGAN_x4plus_anime_6B&#xD;
 Latent Diffusion Super Resolution (LDSR)&#xD;
 Notes:&#xD;
 &#xD;
-most models will unload when you use something else, atm there is a config option for img2txt.keep_all_models_loaded: False if you set this to True img2txt models (the CLIP ones, BLIP stays loaded unless you have optimized mode available) will all stay loaded, by default if a model that is loaded is no longer selected it will be unloaded</Overview>
-  <Category>Tools: MediaApp:Photos</Category>
+most models will unload when you use something else, atm there is a config option for img2txt.keep_all_models_loaded: False if you set this to True img2txt models (the CLIP ones, BLIP stays loaded unless you have optimized mode available) will all stay loaded, by default if a model that is loaded is no longer selected it will be unloaded&#xD;
+volume path now mirrors the repo so is /sd/outputs instead of /sd/user_data/outputs</Overview>
+  <Category>Productivity: MediaApp:Photos</Category>
   <WebUI>http://[IP]:[PORT:8501]</WebUI>
   <TemplateURL/>
   <Icon>https://raw.githubusercontent.com/yourjelly/unraid_xml/main/SDiconpack/SDICO2.ico</Icon>
   <ExtraParams>--gpus all</ExtraParams>
-  <PostArgs/>
+  <PostArgs>/bin/bash mv -rf /sd /appdata &amp;amp;&amp;amp; ln -s /sd /appdata</PostArgs>
   <CPUset/>
   <DateInstalled>1665156089</DateInstalled>
   <DonateText/>
   <DonateLink/>
   <Requires/>
-  <Config Name="Appdata" Target="/sd" Default="/mnt/user/appdata/sd-webui" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sd-webUI</Config>
-  <Config Name="Models Path" Target="/sd/models" Default="" Mode="rw" Description="Large diffusion models will be downloaded here &amp;lt;31GB" Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Appdata" Target="/appdata" Default="/mnt/user/appdata/sd-webui" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sd-webUI</Config>
+  <Config Name="Models Path" Target="/sd/models" Default="" Mode="rw" Description="Large diffusion models will be downloaded here &amp;lt;27GB" Type="Path" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Output Path" Target="/sd/outputs" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false"></Config>
   <Config Name="WebUI Streamlit" Target="8501" Default="8501" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">8501</Config>
   <Config Name="Streamlit" Target="STREAMLIT_SERVER_HEADLESS" Default="true" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
