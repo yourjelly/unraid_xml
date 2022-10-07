@@ -9,7 +9,12 @@
   <Privileged>false</Privileged>
   <Support>https://CREATE_THREAD_IN_FORUM</Support>
   <Project>https://github.com/sd-webui/stable-diffusion-webui</Project>
-  <Overview>Streamlit ui for Stable Diffusion&#xD;
+  <Overview>**WARNING LARGE MODELS DOWNLOADED ON CONTAINER CREATION** (>31GB download)&#xD;
+This driver needs to support the version of CUDA in use by this container. The template adds --gpus all to the way the docker container is started to get access to the GPU(s).&#xD;
+If you have multiple GPUs in your system with some allocated to VMs, make sure to replace --gpus all with --runtime=nvidia and follow the steps below to set the NVIDIA_DRIVER_CAPABILITIES and NVIDIA_VISIBLE_DEVICES variables to only give the container access to selected GPUs.&#xD;
+https://forums.unraid.net/topic/98978-plugin-nvidia-driver/#comment-913251&#xD;
+&#xD;
+Streamlit ui for Stable Diffusion&#xD;
 https://github.com/sd-webui/stable-diffusion-webui/&#xD;
 This now includes all models:&#xD;
 &#xD;
