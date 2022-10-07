@@ -44,6 +44,7 @@ most models will unload when you use something else, atm there is a config optio
   <DonateLink/>
   <Requires/>
   <Config Name="Appdata" Target="/sd" Default="/mnt/user/appdata/sd-webui" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sd-webUI</Config>
+  <Config Name="Models Path" Target="/sd/models" Default="" Mode="rw" Description="Large diffusion models will be downloaded here &amp;lt;31GB" Type="Path" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Output Path" Target="/sd/outputs" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false"></Config>
   <Config Name="WebUI Streamlit" Target="8501" Default="8501" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">8501</Config>
   <Config Name="Streamlit" Target="STREAMLIT_SERVER_HEADLESS" Default="true" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
