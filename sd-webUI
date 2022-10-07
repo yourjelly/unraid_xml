@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>sd-webUI</Name>
+  <Repository>hlky/sd-webui:runpod</Repository>
+  <Registry>https://hub.docker.com/r/hlky/sd-webui</Registry>
+  <Network>proxynet</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://CREATE_THREAD_IN_FORUM</Support>
+  <Project>https://github.com/sd-webui/stable-diffusion-webui</Project>
+  <Overview>Streamlit ui for Stable Diffusion&#xD;
+https://github.com/sd-webui/stable-diffusion-webui/&#xD;
+This now includes all models:&#xD;
+&#xD;
+SD v1-4 (ckpt)&#xD;
+Waifu Diffusion (ckpt)&#xD;
+TrinArt (ckpt)&#xD;
+ViT-L-14 (pytorch.bin, used by inference models, is usually ~1.8gb autodownload to ~/.cache/huggingface/transformers)&#xD;
+SD v1-4 (diffusers, used by txt2vid and textual inversion training)&#xD;
+BLIP&#xD;
+CLIP models: ViT-L-14, ViT-H-14, ViT-g-14, used by img2txt&#xD;
+sd-concepts-library: (nearly) 600 pre-trained concepts to use in prompts, autoloaded when the placeholder is used in the prompt.&#xD;
+GFPGAN v1.4 (and other weights that would normally be autodownloaded, detection_Resnet50_Final.pth and parsing_parsenet.pth, ~185MB)&#xD;
+RealESRGAN: RealESRGAN_x4plus and RealESRGAN_x4plus_anime_6B&#xD;
+Latent Diffusion Super Resolution (LDSR)&#xD;
+Notes:&#xD;
+&#xD;
+most models will unload when you use something else, atm there is a config option for img2txt.keep_all_models_loaded: False if you set this to True img2txt models (the CLIP ones, BLIP stays loaded unless you have optimized mode available) will all stay loaded, by default if a model that is loaded is no longer selected it will be unloaded&#xD;
+volume path now mirrors the repo so is /sd/outputs instead of /sd/user_data/outputs</Overview>
+  <Category>Tools: MediaApp:Photos</Category>
+  <WebUI>http://[IP]:[PORT:8501]</WebUI>
+  <TemplateURL/>
+  <Icon>https://raw.githubusercontent.com/yourjelly/unraid_xml/main/SDiconpack/SDICO2.ico</Icon>
+  <ExtraParams>--gpus all</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1665156089</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Appdata" Target="/sd" Default="/mnt/user/appdata/sd-webui" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sd-webUI</Config>
+  <Config Name="Output Path" Target="/sd/outputs" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/media/AI_Files</Config>
+  <Config Name="WebUI Streamlit" Target="8501" Default="8501" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">8501</Config>
+  <Config Name="Streamlit" Target="STREAMLIT_SERVER_HEADLESS" Default="true" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
+  <Config Name="Streamlit Script" Target="WEBUI_SCRIPT" Default="" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">"webui_streamlit.py"</Config>
+  <Config Name="Validate Diffusion Models" Target="VALIDATE_MODELS" Default="false" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+</Container>
